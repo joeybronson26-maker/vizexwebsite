@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Vizex Private Capital — Independent M&A advisory, debt brokering, and fractional CFO services for UK SMEs." />
+  <title>Vizex Private Capital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg: #ffffff;
+      --color-text-primary: #111110;
+      --color-text-secondary: #5f5e5a;
+      --color-text-tertiary: #888780;
+      --color-border: rgba(17,17,16,0.12);
+      --color-border-mid: rgba(17,17,16,0.22);
+      --color-surface: #f7f6f3;
+      --color-surface-deep: #f1efe8;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-bg: #111110;
+        --color-text-primary: #f1efe8;
+        --color-text-secondary: #b4b2a9;
+        --color-text-tertiary: #888780;
+        --color-border: rgba(241,239,232,0.12);
+        --color-border-mid: rgba(241,239,232,0.22);
+        --color-surface: #1a1a18;
+        --color-surface-deep: #222220;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 3.5rem;
+      border-bottom: 0.5px solid var(--color-border);
+      position: sticky;
+      top: 0;
+      background: var(--color-bg);
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 23px;
+      letter-spacing: 0.06em;
+      color: var(--color-text-primary);
+      text-decoration: none;
+    }
+    .logo span { font-weight: 600; }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--color-text-primary); }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      border-bottom: 0.5px solid var(--color-border);
+      background-color: #1a1a18;
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(10,10,9,0.82) 0%, rgba(10,10,9,0.55) 45%, rgba(10,10,9,0.25) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 4rem 3.5rem 4.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero .eyebrow { color: rgba(241,239,232,0.7); margin-bottom: 2rem; }
+
+    .hero h1 { color: #f6f4ee; max-width: 16ch; }
+
+    .hero-footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 3rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-body {
+      font-size: 15px;
+      line-height: 1.9;
+      color: rgba(241,239,232,0.78);
+      max-width: 460px;
+    }
+
+    .hero .btn {
+      border-color: rgba(241,239,232,0.4);
+      color: #f6f4ee;
+    }
+    .hero .btn:hover { background: #f6f4ee; color: #111110; border-color: #f6f4ee; }
+
+    .hero .geo-tag { color: rgba(241,239,232,0.55); margin-top: 2.5rem; }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-text-tertiary);
+      margin-bottom: 2.5rem;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+      color: var(--color-text-primary);
+      max-width: 13ch;
+    }
+    h1 em { font-style: italic; font-weight: 300; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.95rem 2rem;
+      border: 0.5px solid var(--color-border-mid);
+      background: transparent;
+      color: var(--color-text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .btn:hover { background: var(--color-text-primary); color: var(--color-bg); border-color: var(--color-text-primary); }
+    .btn-arrow { font-size: 14px; }
+
+    .geo-tag {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-tertiary);
+      margin-top: 3rem;
+    }
+
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 0.5px solid var(--color-border);
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .stat {
+      padding: 3.5rem 2.5rem;
+      border-right: 0.5px solid var(--color-border);
+    }
+    .stat:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 56px;
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: 1rem;
+      color: var(--color-text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-tertiary);
+      line-height: 1.7;
+    }
+
+    /* SECTION SCAFFOLD */
+    .section { padding: 6rem 3.5rem; border-bottom: 0.5px solid var(--color-border); max-width: 1280px; margin: 0 auto; }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.75rem;
+      margin-bottom: 4rem;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-text-tertiary);
+      white-space: nowrap;
+    }
+
+    .section-rule {
+      flex: 1;
+      height: 0.5px;
+      background: var(--color-border);
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 0.5px solid var(--color-border);
+    }
+
+    .service-card {
+      padding: 2.75rem 2rem;
+      border-right: 0.5px solid var(--color-border);
+      transition: background 0.2s;
+    }
+    .service-card:last-child { border-right: none; }
+    .service-card:hover { background: var(--color-surface); }
+
+    .service-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      color: var(--color-text-tertiary);
+      margin-bottom: 1.75rem;
+    }
+
+    .service-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 25px;
+      font-weight: 400;
+      margin-bottom: 1.25rem;
+      line-height: 1.2;
+      color: var(--color-text-primary);
+    }
+
+    .service-body {
+      font-size: 13px;
+      line-height: 1.85;
+      color: var(--color-text-secondary);
+    }
+
+    /* APPROACH */
+    .approach {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 0.5px solid var(--color-border);
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .approach-left {
+      padding: 6rem 3.5rem;
+      border-right: 0.5px solid var(--color-border);
+    }
+
+    .approach-right { padding: 6rem 3.5rem; }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 44px;
+      font-weight: 300;
+      line-height: 1.18;
+      margin-bottom: 2.5rem;
+      color: var(--color-text-primary);
+      letter-spacing: -0.01em;
+    }
+    h2 em { font-style: italic; }
+
+    .approach-body {
+      font-size: 14px;
+      line-height: 1.95;
+      color: var(--color-text-secondary);
+      max-width: 420px;
+    }
+
+    .principles { display: flex; flex-direction: column; }
+
+    .principle {
+      padding: 1.75rem 0;
+      border-top: 0.5px solid var(--color-border);
+    }
+    .principle:first-child { padding-top: 0; border-top: none; }
+
+    .principle-head {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.65rem;
+      color: var(--color-text-primary);
+    }
+
+    .principle-body {
+      font-size: 13px;
+      line-height: 1.75;
+      color: var(--color-text-secondary);
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 7rem 3.5rem;
+      border-bottom: 0.5px solid var(--color-border);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 3rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .contact-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 300;
+      line-height: 1.12;
+      max-width: 560px;
+      letter-spacing: -0.01em;
+    }
+    .contact-headline em { font-style: italic; }
+
+    /* FOOTER */
+    footer {
+      padding: 2.5rem 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 16px;
+      letter-spacing: 0.06em;
+      color: var(--color-text-tertiary);
+    }
+
+    .footer-meta {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--color-text-tertiary);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .stat:nth-child(2) { border-right: none; }
+      .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 0.5px solid var(--color-border); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { min-height: 480px; }
+      .hero-content { padding: 3rem 1.5rem 3rem; }
+      h1 { font-size: 42px; }
+      .hero-footer { flex-direction: column; align-items: flex-start; gap: 1.75rem; margin-top: 2.5rem; }
+      .stats { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-bottom: 0.5px solid var(--color-border); padding: 2.5rem 1.5rem; }
+      .stat:last-child { border-bottom: none; }
+      .section { padding: 3.5rem 1.5rem; }
+      .section-header { margin-bottom: 2.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { border-right: none; border-bottom: 0.5px solid var(--color-border); padding: 2.25rem 1.5rem; }
+      .service-card:last-child { border-bottom: none; }
+      .approach { grid-template-columns: 1fr; }
+      .approach-left { border-right: none; border-bottom: 0.5px solid var(--color-border); padding: 3.5rem 1.5rem; }
+      .approach-right { padding: 3.5rem 1.5rem; }
+      h2 { font-size: 34px; }
+      .contact { flex-direction: column; align-items: flex-start; padding: 4rem 1.5rem; }
+      .contact-headline { font-size: 36px; }
+      footer { padding: 1.5rem; flex-direction: column; gap: 0.75rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">Vizex <span>Private Capital</span></a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="transactions.html">Transactions</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="eyebrow">Independent Advisory &middot; UK SME Focus</div>
+      <h1>Confidential advice for <em>consequential</em> decisions.</h1>
+      <div class="hero-footer">
+        <p class="hero-body">
+          Vizex Private Capital delivers owner-led M&amp;A advisory, debt brokering, and fractional CFO services to UK SMEs and private businesses. We are independent, sector-agnostic, and built for founders who demand clarity over complexity.
+        </p>
+        <a href="mailto:imoh@vizex.agency" class="btn">Speak to our team <span class="btn-arrow">&#8594;</span></a>
+      </div>
+      <div class="geo-tag">London &middot; United Kingdom &amp; Ireland</div>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">200+</div>
+      <div class="stat-label">Lender panel across<br>UK credit markets</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Integrated service lines<br>under one mandate</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Independent,<br>unconflicted advice</div>
+    </div>
+  </div>
+
+  <section class="section" id="services">
+    <div class="section-header">
+      <div class="section-label">What we do</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-title">M&amp;A Advisory</div>
+        <p class="service-body">Full-service buy-side and sell-side mandates. From teaser to close — information memoranda, financial modelling, buyer outreach, data room management, and negotiation through to completion.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-title">Debt Brokering</div>
+        <p class="service-body">Access to 200+ lenders across term loans, asset finance, invoice discounting, revenue-based lending, and bridging. NACFB-aligned with a weighted matching engine.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-title">FP&amp;A &amp; Fractional CFO</div>
+        <p class="service-body">Embedded financial leadership for SMEs. Board-ready reporting, cashflow modelling, covenant compliance, and management accounts — without the full-time overhead.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="approach" id="approach">
+    <div class="approach-left">
+      <div class="section-header">
+        <div class="section-label">Our approach</div>
+        <div class="section-rule"></div>
+      </div>
+      <h2>Senior-led.<br><em>Focused.</em><br>Accountable.</h2>
+      <p class="approach-body">You work directly with the person responsible for your outcome — from first conversation to completion. We take on a deliberately small number of mandates so each one receives genuine attention. For owner-managers navigating decisions that are often irreversible, that direct line matters.</p>
+    </div>
+    <div class="approach-right">
+      <div class="principles">
+        <div class="principle">
+          <div class="principle-head">Independence</div>
+          <p class="principle-body">No proprietary capital, no conflicted relationships. Our only obligation is to the client mandate.</p>
+        </div>
+        <div class="principle">
+          <div class="principle-head">Confidentiality</div>
+          <p class="principle-body">Transaction processes are managed under strict NDA discipline. Discretion is a baseline, not a differentiator.</p>
+        </div>
+        <div class="principle">
+          <div class="principle-head">Speed to market</div>
+          <p class="principle-body">A focused caseload means fewer hand-offs and faster decisions — moving from mandate to close without losing rigour.</p>
+        </div>
+        <div class="principle">
+          <div class="principle-head">Aligned incentives</div>
+          <p class="principle-body">Success fees aligned to deal completion. We win when our clients win.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="contact-headline">
+      Ready to discuss your <em>next move?</em>
+    </div>
+    <a href="mailto:imoh@vizex.agency" class="btn">Get in touch <span class="btn-arrow">&#8594;</span></a>
+  </section>
+
+  <footer>
+    <div class="footer-brand">Vizex Private Capital &middot; London</div>
+    <div class="footer-meta">&copy; 2026 Vizex Ltd &mdash; All rights reserved</div>
+  </footer>
+
+</body>
+</html>
