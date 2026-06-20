@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Vizex Private Capital — Closed transactions and deal tombstones." />
+  <title>Transactions — Vizex Private Capital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --text-primary: #111110;
+      --text-secondary: #5f5e5a;
+      --text-tertiary: #888780;
+      --border: rgba(17,17,16,0.12);
+      --border-mid: rgba(17,17,16,0.22);
+      --surface: #f7f6f3;
+      --surface-hover: #f1efe8;
+      --tag-closed-bg: #eaf3de;
+      --tag-closed-text: #3b6d11;
+      --tag-pending-bg: #faeeda;
+      --tag-pending-text: #854f0b;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111110;
+        --text-primary: #f1efe8;
+        --text-secondary: #b4b2a9;
+        --text-tertiary: #888780;
+        --border: rgba(241,239,232,0.12);
+        --border-mid: rgba(241,239,232,0.22);
+        --surface: #1a1a18;
+        --surface-hover: #222220;
+        --tag-closed-bg: #173404;
+        --tag-closed-text: #c0dd97;
+        --tag-pending-bg: #412402;
+        --tag-pending-text: #fac775;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; font-weight: 300; background: var(--bg); color: var(--text-primary); min-height: 100vh; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 2.5rem;
+      border-bottom: 0.5px solid var(--border);
+      position: sticky; top: 0; background: var(--bg); z-index: 100;
+    }
+    .logo { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 0.06em; color: var(--text-primary); text-decoration: none; }
+    .logo span { font-weight: 500; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 4rem 2.5rem 3rem;
+      border-bottom: 0.5px solid var(--border);
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem;
+    }
+    .page-header-left .eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 1rem; }
+    h1 { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; line-height: 1.1; }
+    h1 em { font-style: italic; }
+    .deal-count { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); }
+
+    /* FILTERS */
+    .filters {
+      padding: 1.25rem 2.5rem;
+      border-bottom: 0.5px solid var(--border);
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+    }
+    .filter-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); margin-right: 0.5rem; }
+    .filter-btn {
+      font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.45rem 1rem;
+      border: 0.5px solid var(--border-mid);
+      background: transparent; color: var(--text-secondary);
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: all 0.15s;
+    }
+    .filter-btn:hover { background: var(--surface); color: var(--text-primary); }
+    .filter-btn.active { background: var(--text-primary); color: var(--bg); border-color: var(--text-primary); }
+    .filter-divider { width: 0.5px; height: 20px; background: var(--border-mid); }
+
+    /* DEAL LIST */
+    .deal-list { border-bottom: 0.5px solid var(--border); }
+
+    .deal-row {
+      display: grid;
+      grid-template-columns: 1fr 180px 140px 160px;
+      align-items: center;
+      padding: 1.75rem 2.5rem;
+      border-bottom: 0.5px solid var(--border);
+      gap: 2rem;
+      transition: background 0.15s;
+      cursor: default;
+    }
+    .deal-row:hover { background: var(--surface); }
+    .deal-row:last-child { border-bottom: none; }
+    .deal-row.hidden { display: none; }
+
+    .deal-title { font-size: 14px; font-weight: 400; line-height: 1.45; color: var(--text-primary); }
+    .deal-title .client { display: block; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); margin-top: 0.4rem; }
+
+    .deal-service { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); }
+
+    .deal-date { font-size: 12px; color: var(--text-tertiary); }
+
+    .deal-status-wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .deal-value { font-size: 12px; color: var(--text-secondary); }
+
+    .tag {
+      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 2px; white-space: nowrap;
+    }
+    .tag-closed { background: var(--tag-closed-bg); color: var(--tag-closed-text); }
+    .tag-pending { background: var(--tag-pending-bg); color: var(--tag-pending-text); }
+
+    /* COLUMN HEADERS */
+    .deal-header {
+      display: grid;
+      grid-template-columns: 1fr 180px 140px 160px;
+      padding: 0.9rem 2.5rem;
+      border-bottom: 0.5px solid var(--border);
+      gap: 2rem;
+      background: var(--surface);
+    }
+    .col-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-tertiary); }
+
+    /* EMPTY STATE */
+    .empty-state { padding: 5rem 2.5rem; text-align: center; display: none; }
+    .empty-state p { font-size: 13px; color: var(--text-tertiary); }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-brand { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 15px; letter-spacing: 0.06em; color: var(--text-tertiary); }
+    .footer-meta { font-size: 11px; letter-spacing: 0.08em; color: var(--text-tertiary); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+      .page-header { padding: 3rem 1.5rem 2rem; flex-direction: column; align-items: flex-start; }
+      h1 { font-size: 32px; }
+      .filters { padding: 1rem 1.5rem; }
+      .deal-header { display: none; }
+      .deal-row { grid-template-columns: 1fr; padding: 1.5rem; gap: 0.6rem; }
+      .deal-service, .deal-date { font-size: 11px; }
+      .deal-status-wrap { justify-content: flex-start; }
+      footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">Vizex <span>Private Capital</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#approach">Approach</a></li>
+      <li><a href="transactions.html" class="active">Transactions</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-left">
+      <div class="eyebrow">Selected transactions</div>
+      <h1>Closed <em>&amp; active</em><br>mandates.</h1>
+    </div>
+    <div class="deal-count" id="deal-count">1 transaction</div>
+  </div>
+
+  <div class="filters">
+    <span class="filter-label">Filter</span>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <div class="filter-divider"></div>
+    <button class="filter-btn" data-filter="m&a">M&amp;A Advisory</button>
+    <button class="filter-btn" data-filter="debt">Debt Brokering</button>
+    <button class="filter-btn" data-filter="fpa">FP&amp;A / CFO</button>
+    <div class="filter-divider"></div>
+    <button class="filter-btn" data-filter="closed">Closed</button>
+    <button class="filter-btn" data-filter="pending">Pending</button>
+  </div>
+
+  <div class="deal-header">
+    <div class="col-label">Transaction</div>
+    <div class="col-label">Service</div>
+    <div class="col-label">Date closed</div>
+    <div class="col-label">Consideration / Status</div>
+  </div>
+
+  <div class="deal-list" id="deal-list">
+
+    <!-- SEED DEAL: Bar N16 -->
+    <div class="deal-row" data-service="m&a" data-status="closed">
+      <div class="deal-title">
+        Sale of Bar N16 to an owner-operator buyer — full sell-side mandate including teaser, IM, buyer outreach, data room, and HOT negotiation
+        <span class="client">Client: Bar N16, Stoke Newington, London</span>
+      </div>
+      <div class="deal-service">M&amp;A Advisory</div>
+      <div class="deal-date">2025</div>
+      <div class="deal-status-wrap">
+        <span class="deal-value">£75k total consideration</span>
+        <span class="tag tag-closed">Closed</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="empty-state" id="empty-state">
+    <p>No transactions match the selected filter.</p>
+  </div>
+
+  <footer>
+    <div class="footer-brand">Vizex Private Capital &middot; London</div>
+    <div class="footer-meta">&copy; 2026 Vizex Ltd &mdash; All rights reserved</div>
+  </footer>
+
+  <script>
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const rows = document.querySelectorAll('.deal-row');
+    const countEl = document.getElementById('deal-count');
+    const emptyEl = document.getElementById('empty-state');
+
+    function updateCount(visible) {
+      countEl.textContent = visible === 1 ? '1 transaction' : visible + ' transactions';
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        let visible = 0;
+        rows.forEach(row => {
+          const matchService = f === 'all' || row.dataset.service === f;
+          const matchStatus = f === 'all' || row.dataset.status === f || (f !== 'closed' && f !== 'pending' && row.dataset.service === f);
+          const show = f === 'all'
+            ? true
+            : (f === 'closed' || f === 'pending')
+              ? row.dataset.status === f
+              : row.dataset.service === f;
+          if (show) { row.classList.remove('hidden'); visible++; }
+          else row.classList.add('hidden');
+        });
+        updateCount(visible);
+        emptyEl.style.display = visible === 0 ? 'block' : 'none';
+      });
+    });
+
+    updateCount(rows.length);
+  </script>
+
+</body>
+</html>
