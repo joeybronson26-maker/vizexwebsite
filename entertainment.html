@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Vizex Capital — M&A and capital advisory for entertainment, music and sport. Catalogues, media rights, club equity and creative businesses." />
+  <title>Entertainment &amp; Sport | Vizex Capital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg: #ffffff;
+      --color-text-primary: #111110;
+      --color-text-secondary: #5f5e5a;
+      --color-text-tertiary: #888780;
+      --color-border: rgba(17,17,16,0.12);
+      --color-border-mid: rgba(17,17,16,0.22);
+      --color-surface: #f7f6f3;
+      --color-surface-deep: #f1efe8;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-bg: #111110;
+        --color-text-primary: #f1efe8;
+        --color-text-secondary: #b4b2a9;
+        --color-text-tertiary: #888780;
+        --color-border: rgba(241,239,232,0.12);
+        --color-border-mid: rgba(241,239,232,0.22);
+        --color-surface: #1a1a18;
+        --color-surface-deep: #222220;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 1.5px solid var(--color-text-primary);
+      outline-offset: 3px;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 3.5rem;
+      border-bottom: 0.5px solid var(--color-border);
+      position: sticky;
+      top: 0;
+      background: var(--color-bg);
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 23px;
+      letter-spacing: 0.06em;
+      color: var(--color-text-primary);
+      text-decoration: none;
+    }
+    .logo span { font-weight: 600; }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--color-text-primary); }
+    .nav-links a.current { color: var(--color-text-primary); }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 28px; height: 28px;
+      background: none; border: none;
+      cursor: pointer; padding: 0; z-index: 200;
+    }
+    .menu-toggle span {
+      display: block; width: 100%; height: 1.5px;
+      background: var(--color-text-primary);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .menu-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .menu-toggle.open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed; inset: 0;
+      background: var(--color-bg);
+      z-index: 150;
+      flex-direction: column;
+      justify-content: center; align-items: center;
+      gap: 2.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px; font-weight: 300;
+      color: var(--color-text-primary);
+      text-decoration: none; letter-spacing: 0.02em;
+    }
+    .mobile-menu a:hover { font-style: italic; }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 560px;
+      display: flex;
+      align-items: flex-end;
+      border-bottom: 0.5px solid var(--color-border);
+      background-color: #1a1a18;
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(10,10,9,0.86) 0%, rgba(10,10,9,0.58) 45%, rgba(10,10,9,0.28) 100%);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 4rem 3.5rem 4.5rem;
+      max-width: 1280px; margin: 0 auto; width: 100%;
+    }
+    .hero .eyebrow { color: rgba(241,239,232,0.7); margin-bottom: 2rem; }
+    .hero h1 { color: #f6f4ee; max-width: 15ch; }
+    .hero-footer {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 3rem; margin-top: 3rem; flex-wrap: wrap;
+    }
+    .hero-body {
+      font-size: 15px; line-height: 1.9;
+      color: rgba(241,239,232,0.78); max-width: 480px;
+    }
+    .hero .btn { border-color: rgba(241,239,232,0.4); color: #f6f4ee; }
+    .hero .btn:hover { background: #f6f4ee; color: #111110; border-color: #f6f4ee; }
+    .hero .geo-tag { color: rgba(241,239,232,0.55); margin-top: 2.5rem; }
+
+    .eyebrow {
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--color-text-tertiary); margin-bottom: 2.5rem;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px; font-weight: 300; line-height: 1.08;
+      letter-spacing: -0.015em;
+      color: var(--color-text-primary); max-width: 13ch;
+    }
+    h1 em { font-style: italic; font-weight: 300; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 0.95rem 2rem;
+      border: 0.5px solid var(--color-border-mid);
+      background: transparent; color: var(--color-text-primary);
+      font-family: 'DM Sans', sans-serif; font-weight: 400;
+      cursor: pointer; text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .btn:hover { background: var(--color-text-primary); color: var(--color-bg); border-color: var(--color-text-primary); }
+    .btn-arrow { font-size: 14px; }
+
+    .geo-tag {
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--color-text-tertiary); margin-top: 3rem;
+    }
+
+    /* ASSET CLASS STRIP — signature element for this sector */
+    .assets {
+      max-width: 1280px; margin: 0 auto;
+      border-bottom: 0.5px solid var(--color-border);
+      padding: 3.25rem 3.5rem;
+    }
+    .assets-label {
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--color-text-tertiary); margin-bottom: 2rem;
+    }
+    .assets-list {
+      display: flex; flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.35rem 1.6rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 27px; font-weight: 300; line-height: 1.45;
+      color: var(--color-text-primary);
+      letter-spacing: -0.005em;
+    }
+    .assets-list span { white-space: nowrap; }
+    .assets-list .sep { color: var(--color-text-tertiary); font-size: 20px; }
+    .assets-note {
+      font-size: 13px; line-height: 1.85;
+      color: var(--color-text-secondary);
+      max-width: 620px; margin-top: 2rem;
+    }
+
+    /* SECTION SCAFFOLD */
+    .section { padding: 6rem 3.5rem; border-bottom: 0.5px solid var(--color-border); max-width: 1280px; margin: 0 auto; }
+
+    .section-header {
+      display: flex; align-items: baseline; gap: 1.75rem; margin-bottom: 4rem;
+    }
+    .section-label {
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--color-text-tertiary); white-space: nowrap;
+    }
+    .section-rule { flex: 1; height: 0.5px; background: var(--color-border); }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      border-top: 0.5px solid var(--color-border);
+    }
+    .service-card {
+      padding: 2.75rem 2.5rem;
+      border-right: 0.5px solid var(--color-border);
+      border-bottom: 0.5px solid var(--color-border);
+      transition: background 0.2s;
+    }
+    .service-card:nth-child(2n) { border-right: none; }
+    .service-card:nth-last-child(-n+2) { border-bottom: none; }
+    .service-card:hover { background: var(--color-surface); }
+
+    .service-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 25px; font-weight: 400;
+      margin-bottom: 1.25rem; line-height: 1.2;
+      color: var(--color-text-primary);
+    }
+    .service-body { font-size: 13px; line-height: 1.85; color: var(--color-text-secondary); }
+
+    /* PROCESS — a real sequence, so it is numbered */
+    .process { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 0.5px solid var(--color-border); }
+    .step {
+      padding: 2.75rem 2.25rem;
+      border-right: 0.5px solid var(--color-border);
+    }
+    .step:last-child { border-right: none; }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px; color: var(--color-text-tertiary); margin-bottom: 1.75rem;
+    }
+    .step-title {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+      margin-bottom: 1rem; color: var(--color-text-primary);
+    }
+    .step-body { font-size: 13px; line-height: 1.85; color: var(--color-text-secondary); }
+
+    /* POSITIONING SPLIT */
+    .approach {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-bottom: 0.5px solid var(--color-border);
+      max-width: 1280px; margin: 0 auto;
+    }
+    .approach-left { padding: 6rem 3.5rem; border-right: 0.5px solid var(--color-border); }
+    .approach-right { padding: 6rem 3.5rem; }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 44px; font-weight: 300; line-height: 1.18;
+      margin-bottom: 2.5rem; color: var(--color-text-primary);
+      letter-spacing: -0.01em;
+    }
+    h2 em { font-style: italic; }
+
+    .approach-body { font-size: 14px; line-height: 1.95; color: var(--color-text-secondary); max-width: 420px; }
+
+    .principles { display: flex; flex-direction: column; }
+    .principle { padding: 1.75rem 0; border-top: 0.5px solid var(--color-border); }
+    .principle:first-child { padding-top: 0; border-top: none; }
+    .principle-head {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 0.65rem; color: var(--color-text-primary);
+    }
+    .principle-body { font-size: 13px; line-height: 1.75; color: var(--color-text-secondary); }
+
+    /* CONTACT */
+    .contact {
+      padding: 7rem 3.5rem; border-bottom: 0.5px solid var(--color-border);
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 3rem; max-width: 1280px; margin: 0 auto;
+    }
+    .contact-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px; font-weight: 300; line-height: 1.12;
+      max-width: 560px; letter-spacing: -0.01em;
+    }
+    .contact-headline em { font-style: italic; }
+
+    /* FOOTER */
+    footer { max-width: 1280px; margin: 0 auto; padding: 2.5rem 3.5rem 3.5rem; }
+    .footer-top {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 2rem; border-bottom: 0.5px solid var(--color-border);
+    }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif; font-weight: 300;
+      font-size: 16px; letter-spacing: 0.06em; color: var(--color-text-tertiary);
+    }
+    .footer-meta { font-size: 11px; letter-spacing: 0.08em; color: var(--color-text-tertiary); }
+    .footer-links { display: flex; gap: 1.75rem; margin: 2rem 0 1.75rem; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--color-text-tertiary); text-decoration: none;
+    }
+    .footer-links a:hover { color: var(--color-text-primary); }
+    .disclosure {
+      font-size: 11px; line-height: 1.85; color: var(--color-text-tertiary);
+      max-width: 92ch;
+    }
+    .disclosure p + p { margin-top: 0.85rem; }
+    .disclosure a { color: var(--color-text-secondary); }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .process { grid-template-columns: 1fr; }
+      .step { border-right: none; border-bottom: 0.5px solid var(--color-border); }
+      .step:last-child { border-bottom: none; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+      .menu-toggle { display: flex; }
+      .hero { min-height: 460px; }
+      .hero-content { padding: 3rem 1.5rem 3rem; }
+      h1 { font-size: 40px; }
+      .hero-footer { flex-direction: column; align-items: flex-start; gap: 1.75rem; margin-top: 2.5rem; }
+      .assets { padding: 2.5rem 1.5rem; }
+      .assets-list { font-size: 21px; gap: 0.25rem 1.1rem; }
+      .section { padding: 3.5rem 1.5rem; }
+      .section-header { margin-bottom: 2.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { border-right: none; border-bottom: 0.5px solid var(--color-border); padding: 2.25rem 1.5rem; }
+      .service-card:last-child { border-bottom: none; }
+      .step { padding: 2.25rem 1.5rem; }
+      .approach { grid-template-columns: 1fr; }
+      .approach-left { border-right: none; border-bottom: 0.5px solid var(--color-border); padding: 3.5rem 1.5rem; }
+      .approach-right { padding: 3.5rem 1.5rem; }
+      h2 { font-size: 34px; }
+      .contact { flex-direction: column; align-items: flex-start; padding: 4rem 1.5rem; }
+      .contact-headline { font-size: 36px; }
+      footer { padding: 1.5rem 1.5rem 2.5rem; }
+      .footer-top { flex-direction: column; gap: 0.75rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">Vizex <span>Capital</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="entertainment.html" class="current">Entertainment &amp; Sport</a></li>
+      <li><a href="index.html#approach">Approach</a></li>
+      <li><a href="transactions.html">Transactions</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html#services">Services</a>
+    <a href="entertainment.html">Entertainment &amp; Sport</a>
+    <a href="index.html#approach">Approach</a>
+    <a href="transactions.html">Transactions</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <section class="hero" id="hero" style="background-image: url('hero-entertainment.jpg');">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="eyebrow">Sector Practice &middot; Entertainment, Music &amp; Sport</div>
+      <h1>In creative industries, <em>ownership</em> is everything.</h1>
+      <div class="hero-footer">
+        <p class="hero-body">
+          We advise artists, labels, clubs, media companies and the investors who back them on mergers, acquisitions, capital raises and valuations. The assets are catalogues, rights and equity in clubs rather than plant and stock, so they need to be understood before they can be sold or financed. That understanding is what we bring.
+        </p>
+        <a href="mailto:imoh@vizex.agency?subject=Entertainment%20%26%20Sport%20enquiry" class="btn">Start a conversation <span class="btn-arrow">&#8594;</span></a>
+      </div>
+      <div class="geo-tag">London &middot; United Kingdom &amp; Ireland</div>
+    </div>
+  </section>
+
+  <section class="assets">
+    <div class="assets-label">Assets we advise on</div>
+    <div class="assets-list">
+      <span>Music catalogues</span><span class="sep">&#47;</span>
+      <span>Publishing rights</span><span class="sep">&#47;</span>
+      <span>Media &amp; broadcast rights</span><span class="sep">&#47;</span>
+      <span>Football club equity</span><span class="sep">&#47;</span>
+      <span>Commercial &amp; naming rights</span><span class="sep">&#47;</span>
+      <span>Talent and brand IP</span><span class="sep">&#47;</span>
+      <span>Production &amp; label businesses</span>
+    </div>
+    <p class="assets-note">
+      Each of these behaves differently under diligence. A catalogue is valued on decay curves and royalty statements, a club on matchday and central distribution, a rights contract on the counterparty behind it. Conventional SME advisory tends to price them as goodwill. We do not.
+    </p>
+  </section>
+
+  <section class="section" id="services">
+    <div class="section-header">
+      <div class="section-label">What we do</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-title">Buy-side &amp; sell-side advisory</div>
+        <p class="service-body">Acquisitions, divestments and strategic partnerships for investors, founders and entertainment companies. We run the process end to end, from valuation and materials through counterparty outreach, diligence and negotiation to completion.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-title">Capital raising</div>
+        <p class="service-body">Debt and equity structured and sourced against creative assets. Strategic investors, institutional lenders and specialist credit funds, including debt facilities arranged through our lending partners.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-title">Valuation &amp; strategic analysis</div>
+        <p class="service-body">Financial modelling and valuation for catalogues, brands, media rights and clubs. Built to withstand a buyer's diligence rather than to flatter a mandate, and tailored to how each asset class actually earns.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-title">Investor &amp; founder support</div>
+        <p class="service-body">Transaction insight and market intelligence for investors entering entertainment for the first time, and for founders weighing an exit or scaling through acquisition.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <div class="section-label">How a mandate runs</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="process">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Prepare</div>
+        <p class="step-body">We start with your objectives and your numbers. Valuation, financial modelling and strategic positioning, establishing the foundation for the transaction under confidentiality from day one.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Position</div>
+        <p class="step-body">We structure the deal and identify the right counterparties. Whether an acquisition, a sale or a raise, we shape the narrative, build the materials and approach buyers or investors who fit the mandate.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Execute</div>
+        <p class="step-body">We manage negotiations through to close. From diligence to final terms, we hold the line on value, timing and structure, and keep the process moving without losing rigour.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="approach">
+    <div class="approach-left">
+      <div class="section-header">
+        <div class="section-label">Why a sector practice</div>
+        <div class="section-rule"></div>
+      </div>
+      <h2>One firm.<br><em>Two vocabularies.</em></h2>
+      <p class="approach-body">Entertainment sits inside Vizex Capital rather than beside it. The diligence discipline, the lender panel and the modelling are the same as on any other mandate. What changes is the asset. A rights contract, a catalogue or a stake in a club is priced on different mechanics to a trading business, and getting that wrong costs the client either the deal or the value in it. The same team runs both, which means an entertainment client also reaches our debt and fractional CFO capability without a handoff.</p>
+    </div>
+    <div class="approach-right">
+      <div class="principles">
+        <div class="principle">
+          <div class="principle-head">Independence</div>
+          <p class="principle-body">No proprietary capital and no conflicted relationships. Our only obligation is to the client mandate.</p>
+        </div>
+        <div class="principle">
+          <div class="principle-head">Confidentiality</div>
+          <p class="principle-body">Processes are run under strict NDA discipline. In this sector a leaked mandate moves a valuation, so discretion is a baseline rather than a differentiator.</p>
+        </div>
+        <div class="principle">
+          <div class="principle-head">Asset literacy</div>
+          <p class="principle-body">We model catalogues, rights and club revenues on their own terms, not as a generic multiple of earnings.</p>
+        </div>
+        <div class="principle">
+          <div class="principle-head">Aligned incentives</div>
+          <p class="principle-body">Success fees tied to completion. We are paid when the client gets the outcome.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="contact-headline">
+      Let's structure your <em>next deal.</em>
+    </div>
+    <a href="mailto:imoh@vizex.agency?subject=Entertainment%20%26%20Sport%20enquiry" class="btn">Get in touch <span class="btn-arrow">&#8594;</span></a>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">Vizex Capital &middot; London</div>
+      <div class="footer-meta">&copy; 2026 Vizex Ltd &mdash; All rights reserved</div>
+    </div>
+
+    <div class="footer-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="complaints-policy.html">Complaints Policy</a>
+      <a href="transactions.html">Transactions</a>
+    </div>
+
+    <div class="disclosure">
+      <p>Vizex Capital is a trading style of Vizex LTD, registered at 71 Hallington Court, 6 Brannigan Way, Edgware, England, HA8 8GE. Company Register number is 16580856. ICO registration ZB953461 and you can check via <a href="https://www.ico.org.uk" rel="noopener">www.ico.org.uk</a>.</p>
+      <p>Vizex LTD is not authorised by the Financial Conduct Authority and can only complete non-regulated introductions. We work with a Panel of Lenders whose particulars will be supplied upon request to find a potentially suitable arrangement for your consideration.</p>
+      <p>We will receive commission from lenders. Different lenders pay different amounts depending on different commission models. For transparency we work with the following commission models: fixed fee, fixed rate of commission and percentage of the amount you borrow. Further details of the commission model, calculation and amount will be disclosed to you throughout your customer journey.</p>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    toggle.addEventListener('click', () => {
+      const open = toggle.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+
+</body>
+</html>
