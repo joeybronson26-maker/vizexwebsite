@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Vizex Private Capital — Closed transactions and deal tombstones." />
-  <title>Transactions — Vizex Private Capital</title>
+  <meta name="description" content="Vizex Capital — closed transactions and active mandates across M&A advisory, debt brokering, and fractional CFO services." />
+  <title>Transactions — Vizex Capital</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -22,8 +22,8 @@
       --color-surface-deep: #f1efe8;
       --tag-closed-bg: #eaf3de;
       --tag-closed-text: #3b6d11;
-      --tag-pending-bg: #faeeda;
-      --tag-pending-text: #854f0b;
+      --tag-active-bg: #faeeda;
+      --tag-active-text: #854f0b;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -38,8 +38,8 @@
         --color-surface-deep: #222220;
         --tag-closed-bg: #173404;
         --tag-closed-text: #c0dd97;
-        --tag-pending-bg: #412402;
-        --tag-pending-text: #fac775;
+        --tag-active-bg: #412402;
+        --tag-active-text: #fac775;
       }
     }
 
@@ -266,7 +266,7 @@
       white-space: nowrap;
     }
     .tag-closed { background: var(--tag-closed-bg); color: var(--tag-closed-text); }
-    .tag-pending { background: var(--tag-pending-bg); color: var(--tag-pending-text); }
+    .tag-active { background: var(--tag-active-bg); color: var(--tag-active-text); }
 
     /* EMPTY STATE */
     .empty-state { padding: 5rem 3.5rem; text-align: center; display: none; max-width: 1280px; margin: 0 auto; }
@@ -274,12 +274,45 @@
 
     /* FOOTER */
     footer {
-      padding: 2.5rem 3.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2.5rem 3.5rem 3.5rem;
+    }
+    .footer-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 1280px;
-      margin: 0 auto;
+      padding-bottom: 2rem;
+      border-bottom: 0.5px solid var(--color-border);
+    }
+    .footer-main {
+      display: grid; grid-template-columns: 1fr 260px; gap: 4rem; margin-top: 2rem;
+    }
+    .footer-links { display: flex; gap: 1.75rem; margin: 0 0 1.75rem; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--color-text-tertiary); text-decoration: none;
+    }
+    .footer-links a:hover { color: var(--color-text-primary); }
+    .disclosure { font-size: 11px; line-height: 1.85; color: var(--color-text-tertiary); }
+    .disclosure p + p { margin-top: 0.85rem; }
+    .disclosure a { color: var(--color-text-secondary); }
+    .footer-tools-label {
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--color-text-tertiary); margin-bottom: 1.1rem;
+    }
+    .tool-list { list-style: none; margin: 0; padding: 0; }
+    .tool-list li { border-top: 0.5px solid var(--color-border); }
+    .tool-list li:first-child { border-top: none; }
+    .tool-list a { display: block; padding: 0.85rem 0; text-decoration: none; transition: opacity 0.2s; }
+    .tool-list a:hover { opacity: 0.65; }
+    .tool-name { display: block; font-size: 13px; font-weight: 400; color: var(--color-text-primary); margin-bottom: 0.25rem; }
+    .tool-desc { display: block; font-size: 11px; line-height: 1.6; color: var(--color-text-tertiary); }
+
+    a:focus-visible, button:focus-visible { outline: 1.5px solid var(--color-text-primary); outline-offset: 3px; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
     }
     .footer-brand {
       font-family: 'Cormorant Garamond', serif;
@@ -303,16 +336,19 @@
       .deal-service, .deal-date { font-size: 11px; }
       .deal-status-wrap { justify-content: flex-start; }
       .empty-state { padding: 3.5rem 1.5rem; }
-      footer { padding: 1.5rem; flex-direction: column; gap: 0.75rem; align-items: flex-start; }
+      .footer-main { grid-template-columns: 1fr; gap: 2.5rem; }
+      footer { padding: 1.5rem 1.5rem 2.5rem; }
+      .footer-top { flex-direction: column; gap: 0.75rem; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a href="index.html" class="logo">Vizex <span>Private Capital</span></a>
+    <a href="index.html" class="logo">Vizex <span>Capital</span></a>
     <ul class="nav-links">
       <li><a href="index.html#services">Services</a></li>
+      <li><a href="entertainment.html">Entertainment &amp; Sport</a></li>
       <li><a href="index.html#approach">Approach</a></li>
       <li><a href="transactions.html" class="active">Transactions</a></li>
       <li><a href="index.html#contact">Contact</a></li>
@@ -324,6 +360,7 @@
 
   <div class="mobile-menu" id="mobile-menu">
     <a href="index.html#services">Services</a>
+    <a href="entertainment.html">Entertainment &amp; Sport</a>
     <a href="index.html#approach">Approach</a>
     <a href="transactions.html">Transactions</a>
     <a href="index.html#contact">Contact</a>
@@ -334,7 +371,7 @@
       <div class="eyebrow">Selected transactions</div>
       <h1>Closed <em>&amp; active</em> mandates.</h1>
     </div>
-    <div class="deal-count" id="deal-count">1 transaction</div>
+    <div class="deal-count" id="deal-count">2 mandates</div>
   </div>
 
   <div class="filters">
@@ -345,30 +382,45 @@
     <button class="filter-btn" data-filter="debt">Debt Brokering</button>
     <button class="filter-btn" data-filter="fpa">FP&amp;A / CFO</button>
     <div class="filter-divider"></div>
+    <button class="filter-btn" data-filter="entertainment">Entertainment &amp; Sport</button>
+    <div class="filter-divider"></div>
     <button class="filter-btn" data-filter="closed">Closed</button>
-    <button class="filter-btn" data-filter="pending">Pending</button>
+    <button class="filter-btn" data-filter="active">Active</button>
   </div>
 
   <div class="deal-wrap">
     <div class="deal-header">
       <div class="col-label">Transaction</div>
       <div class="col-label">Service</div>
-      <div class="col-label">Date closed</div>
+      <div class="col-label">Date</div>
       <div class="col-label">Consideration / Status</div>
     </div>
 
     <div class="deal-list" id="deal-list">
 
-      <div class="deal-row" data-service="m&a" data-status="closed">
+      <div class="deal-row" data-service="m&a" data-status="closed" data-sector="hospitality">
         <div class="deal-title">
-          Sale of Bar N16 to an owner-operator buyer — full sell-side mandate including teaser, IM, buyer outreach, data room, and HOT negotiation
-          <span class="client">Client: Bar N16, Stoke Newington, London</span>
+          Sale of Domani's Bar to an owner-operator buyer: full sell-side mandate including teaser, IM, buyer outreach, data room, and HOT negotiation
+          <span class="client">Client: Domani's Bar, Stoke Newington, London</span>
         </div>
         <div class="deal-service">M&amp;A Advisory</div>
-        <div class="deal-date">2025</div>
+        <div class="deal-date">2026</div>
         <div class="deal-status-wrap">
           <span class="deal-value">£75k total consideration</span>
           <span class="tag tag-closed">Closed</span>
+        </div>
+      </div>
+
+      <div class="deal-row" data-service="fpa" data-status="active" data-sector="entertainment">
+        <div class="deal-title">
+          Outsourced finance function for a creator-economy video production business &mdash; bookkeeping, management accounts, and fractional CFO support
+          <span class="client">Client: Stacka Ventures Limited, London</span>
+        </div>
+        <div class="deal-service">FP&amp;A / CFO</div>
+        <div class="deal-date">2026</div>
+        <div class="deal-status-wrap">
+          <span class="deal-value">Ongoing retainer</span>
+          <span class="tag tag-active">Active</span>
         </div>
       </div>
 
@@ -380,8 +432,44 @@
   </div>
 
   <footer>
-    <div class="footer-brand">Vizex Private Capital &middot; London</div>
-    <div class="footer-meta">&copy; 2026 Vizex Ltd &mdash; All rights reserved</div>
+    <div class="footer-top">
+      <div class="footer-brand">Vizex Capital &middot; London</div>
+      <div class="footer-meta">&copy; 2026 Vizex Ltd &mdash; All rights reserved</div>
+    </div>
+
+    <div class="footer-main">
+      <div class="footer-legal">
+        <div class="footer-links">
+    <a href="entertainment.html">Entertainment &amp; Sport</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="complaints-policy.html">Complaints Policy</a>
+        </div>
+
+        <div class="disclosure">
+          <p>Vizex Capital is a trading style of Vizex LTD, registered at 71 Hallington Court, 6 Brannigan Way, Edgware, England, HA8 8GE. Company Register number is 16580856. ICO registration ZB953461 and you can check via <a href="https://www.ico.org.uk" rel="noopener">www.ico.org.uk</a>.</p>
+          <p>Vizex LTD is not authorised by the Financial Conduct Authority and can only complete non-regulated introductions. We work with a Panel of Lenders whose particulars will be supplied upon request to find a potentially suitable arrangement for your consideration.</p>
+          <p>We will receive commission from lenders. Different lenders pay different amounts depending on different commission models. For transparency we work with the following commission models: fixed fee, fixed rate of commission and percentage of the amount you borrow. Further details of the commission model, calculation and amount will be disclosed to you throughout your customer journey.</p>
+        </div>
+      </div>
+
+      <div class="footer-tools">
+        <div class="footer-tools-label">Free tools</div>
+        <ul class="tool-list">
+          <li><a href="https://lendermatch.vizexcapital.com" rel="noopener">
+            <span class="tool-name">LenderMatch</span>
+            <span class="tool-desc">Find the lenders on our panel that fit your business</span>
+          </a></li>
+          <li><a href="https://mca.vizexcapital.com" rel="noopener">
+            <span class="tool-name">MCA Compare</span>
+            <span class="tool-desc">Compare merchant cash advance offers and total cost</span>
+          </a></li>
+          <li><a href="https://partner.vizexcapital.com" rel="noopener">
+            <span class="tool-name">Referral Partner Hub</span>
+            <span class="tool-desc">For accountants and advisers referring clients</span>
+          </a></li>
+        </ul>
+      </div>
+    </div>
   </footer>
 
   <script>
@@ -404,7 +492,7 @@
     const emptyEl = document.getElementById('empty-state');
 
     function updateCount(visible) {
-      countEl.textContent = visible === 1 ? '1 transaction' : visible + ' transactions';
+      countEl.textContent = visible === 1 ? '1 mandate' : visible + ' mandates';
     }
 
     filterBtns.forEach(btn => {
@@ -412,13 +500,17 @@
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const f = btn.dataset.filter;
+        const statusFilters = ['closed', 'active'];
+        const sectorFilters = ['entertainment'];
         let visible = 0;
         rows.forEach(row => {
           const show = f === 'all'
             ? true
-            : (f === 'closed' || f === 'pending')
+            : statusFilters.includes(f)
               ? row.dataset.status === f
-              : row.dataset.service === f;
+              : sectorFilters.includes(f)
+                ? row.dataset.sector === f
+                : row.dataset.service === f;
           if (show) { row.classList.remove('hidden'); visible++; }
           else row.classList.add('hidden');
         });

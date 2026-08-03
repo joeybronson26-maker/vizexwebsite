@@ -121,12 +121,30 @@
     .footer-top { display: flex; align-items: center; justify-content: space-between; padding-bottom: 2rem; border-bottom: 0.5px solid var(--color-border); }
     .footer-brand { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 16px; letter-spacing: 0.06em; color: var(--color-text-tertiary); }
     .footer-meta { font-size: 11px; letter-spacing: 0.08em; color: var(--color-text-tertiary); }
-    .footer-links { display: flex; gap: 1.75rem; margin: 2rem 0 1.75rem; flex-wrap: wrap; }
-    .footer-links a { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-tertiary); text-decoration: none; }
+    .footer-main {
+      display: grid; grid-template-columns: 1fr 260px; gap: 4rem; margin-top: 2rem;
+    }
+    .footer-links { display: flex; gap: 1.75rem; margin: 0 0 1.75rem; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--color-text-tertiary); text-decoration: none;
+    }
     .footer-links a:hover { color: var(--color-text-primary); }
-    .disclosure { font-size: 11px; line-height: 1.85; color: var(--color-text-tertiary); max-width: 92ch; }
+    .disclosure { font-size: 11px; line-height: 1.85; color: var(--color-text-tertiary); }
     .disclosure p + p { margin-top: 0.85rem; }
     .disclosure a { color: var(--color-text-secondary); }
+    .footer-tools-label {
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--color-text-tertiary); margin-bottom: 1.1rem;
+    }
+    .tool-list { list-style: none; margin: 0; padding: 0; }
+    .tool-list li { border-top: 0.5px solid var(--color-border); }
+    .tool-list li:first-child { border-top: none; }
+    .tool-list a { display: block; padding: 0.85rem 0; text-decoration: none; transition: opacity 0.2s; }
+    .tool-list a:hover { opacity: 0.65; }
+    .tool-name { display: block; font-size: 13px; font-weight: 400; color: var(--color-text-primary); margin-bottom: 0.25rem; }
+    .tool-desc { display: block; font-size: 11px; line-height: 1.6; color: var(--color-text-tertiary); }
+
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -143,6 +161,7 @@
       .contact-block { padding: 1.5rem; }
       .contact-block dl { grid-template-columns: 1fr; gap: 0.3rem; }
       .contact-block dd { margin-bottom: 0.9rem; }
+      .footer-main { grid-template-columns: 1fr; gap: 2.5rem; }
       footer { padding: 1.5rem 1.5rem 2.5rem; }
       .footer-top { flex-direction: column; gap: 0.75rem; align-items: flex-start; }
     }
@@ -256,17 +275,39 @@
       <div class="footer-meta">&copy; 2026 Vizex Ltd &mdash; All rights reserved</div>
     </div>
 
-    <div class="footer-links">
-      <a href="entertainment.html">Entertainment &amp; Sport</a>
-      <a href="transactions.html">Transactions</a>
-      <a href="privacy-policy.html">Privacy Policy</a>
-      <a href="complaints-policy.html">Complaints Policy</a>
-    </div>
+    <div class="footer-main">
+      <div class="footer-legal">
+        <div class="footer-links">
+    <a href="entertainment.html">Entertainment &amp; Sport</a>
+    <a href="transactions.html">Transactions</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="complaints-policy.html">Complaints Policy</a>
+        </div>
 
-    <div class="disclosure">
-      <p>Vizex Capital is a trading style of Vizex LTD, registered at 71 Hallington Court, 6 Brannigan Way, Edgware, England, HA8 8GE. Company Register number is 16580856. ICO registration ZB953461 and you can check via <a href="https://www.ico.org.uk" rel="noopener">www.ico.org.uk</a>.</p>
-      <p>Vizex LTD is not authorised by the Financial Conduct Authority and can only complete non-regulated introductions. We work with a Panel of Lenders whose particulars will be supplied upon request to find a potentially suitable arrangement for your consideration.</p>
-      <p>We will receive commission from lenders. Different lenders pay different amounts depending on different commission models. For transparency we work with the following commission models: fixed fee, fixed rate of commission and percentage of the amount you borrow. Further details of the commission model, calculation and amount will be disclosed to you throughout your customer journey.</p>
+        <div class="disclosure">
+          <p>Vizex Capital is a trading style of Vizex LTD, registered at 71 Hallington Court, 6 Brannigan Way, Edgware, England, HA8 8GE. Company Register number is 16580856. ICO registration ZB953461 and you can check via <a href="https://www.ico.org.uk" rel="noopener">www.ico.org.uk</a>.</p>
+          <p>Vizex LTD is not authorised by the Financial Conduct Authority and can only complete non-regulated introductions. We work with a Panel of Lenders whose particulars will be supplied upon request to find a potentially suitable arrangement for your consideration.</p>
+          <p>We will receive commission from lenders. Different lenders pay different amounts depending on different commission models. For transparency we work with the following commission models: fixed fee, fixed rate of commission and percentage of the amount you borrow. Further details of the commission model, calculation and amount will be disclosed to you throughout your customer journey.</p>
+        </div>
+      </div>
+
+      <div class="footer-tools">
+        <div class="footer-tools-label">Free tools</div>
+        <ul class="tool-list">
+          <li><a href="https://lendermatch.vizexcapital.com" rel="noopener">
+            <span class="tool-name">LenderMatch</span>
+            <span class="tool-desc">Find the lenders on our panel that fit your business</span>
+          </a></li>
+          <li><a href="https://mca.vizexcapital.com" rel="noopener">
+            <span class="tool-name">MCA Compare</span>
+            <span class="tool-desc">Compare merchant cash advance offers and total cost</span>
+          </a></li>
+          <li><a href="https://partner.vizexcapital.com" rel="noopener">
+            <span class="tool-name">Referral Partner Hub</span>
+            <span class="tool-desc">For accountants and advisers referring clients</span>
+          </a></li>
+        </ul>
+      </div>
     </div>
   </footer>
 
