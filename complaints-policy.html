@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Vizex Capital complaint handling policy: how to raise a complaint and how we respond." />
+  <meta name="robots" content="noindex, follow" />
+  <title>Complaints Policy | Vizex Capital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-bg: #ffffff; --color-text-primary: #111110; --color-text-secondary: #5f5e5a;
+      --color-text-tertiary: #888780; --color-border: rgba(17,17,16,0.12);
+      --color-border-mid: rgba(17,17,16,0.22); --color-surface: #f7f6f3;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-bg: #111110; --color-text-primary: #f1efe8; --color-text-secondary: #b4b2a9;
+        --color-text-tertiary: #888780; --color-border: rgba(241,239,232,0.12);
+        --color-border-mid: rgba(241,239,232,0.22); --color-surface: #1a1a18;
+      }
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      background: var(--color-bg); color: var(--color-text-primary);
+      min-height: 100vh; -webkit-font-smoothing: antialiased;
+    }
+    a:focus-visible, button:focus-visible { outline: 1.5px solid var(--color-text-primary); outline-offset: 3px; }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 3.5rem; border-bottom: 0.5px solid var(--color-border);
+      position: sticky; top: 0; background: var(--color-bg); z-index: 100;
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 23px;
+      letter-spacing: 0.06em; color: var(--color-text-primary); text-decoration: none;
+    }
+    .logo span { font-weight: 600; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--color-text-secondary); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--color-text-primary); }
+
+    .menu-toggle {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      width: 28px; height: 28px; background: none; border: none; cursor: pointer; padding: 0; z-index: 200;
+    }
+    .menu-toggle span { display: block; width: 100%; height: 1.5px; background: var(--color-text-primary); transition: transform 0.3s, opacity 0.3s; }
+    .menu-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .menu-toggle.open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; background: var(--color-bg); z-index: 150;
+      flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300;
+      color: var(--color-text-primary); text-decoration: none; letter-spacing: 0.02em;
+    }
+    .mobile-menu a:hover { font-style: italic; }
+
+    /* LEGAL PAGE */
+    .page-head {
+      max-width: 1280px; margin: 0 auto; padding: 5rem 3.5rem 3.5rem;
+      border-bottom: 0.5px solid var(--color-border);
+    }
+    .eyebrow {
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--color-text-tertiary); margin-bottom: 2rem;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif; font-size: 60px; font-weight: 300;
+      line-height: 1.08; letter-spacing: -0.015em; color: var(--color-text-primary); max-width: 16ch;
+    }
+    h1 em { font-style: italic; font-weight: 300; }
+    .page-meta { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-tertiary); margin-top: 2.5rem; }
+
+    .legal { max-width: 1280px; margin: 0 auto; padding: 4rem 3.5rem 5rem; }
+    .legal-inner { max-width: 76ch; }
+    .clause { padding: 2.5rem 0; border-top: 0.5px solid var(--color-border); }
+    .clause:first-child { border-top: none; padding-top: 0; }
+    .clause-num { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: var(--color-text-tertiary); margin-bottom: 1.25rem; }
+    h2 {
+      font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 400;
+      line-height: 1.2; margin-bottom: 1.5rem; color: var(--color-text-primary); letter-spacing: -0.005em;
+    }
+    .legal p { font-size: 14px; line-height: 1.95; color: var(--color-text-secondary); }
+    .legal p + p { margin-top: 1.1rem; }
+    .legal ul, .legal ol { margin: 1.25rem 0 0 0; padding-left: 0; list-style: none; }
+    .legal li {
+      font-size: 14px; line-height: 1.9; color: var(--color-text-secondary);
+      padding: 0.6rem 0 0.6rem 1.75rem; position: relative;
+    }
+    .legal ul li::before { content: "\2014"; position: absolute; left: 0; color: var(--color-text-tertiary); }
+    .legal ol { counter-reset: step; }
+    .legal ol li { counter-increment: step; border-top: 0.5px solid var(--color-border); padding: 1.25rem 0 1.25rem 2.5rem; }
+    .legal ol li:first-child { border-top: none; }
+    .legal ol li::before {
+      content: counter(step, decimal-leading-zero); position: absolute; left: 0; top: 1.25rem;
+      font-family: 'Cormorant Garamond', serif; font-size: 14px; color: var(--color-text-tertiary);
+    }
+    .legal ol li strong { color: var(--color-text-primary); font-weight: 500; }
+    .legal a { color: var(--color-text-primary); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 0.5px; }
+    .contact-block {
+      background: var(--color-surface); border: 0.5px solid var(--color-border);
+      padding: 2rem 2.25rem; margin-top: 1.5rem;
+    }
+    .contact-block dl { display: grid; grid-template-columns: 8rem 1fr; gap: 0.9rem 1.5rem; }
+    .contact-block dt { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-tertiary); padding-top: 0.2rem; }
+    .contact-block dd { font-size: 14px; line-height: 1.7; color: var(--color-text-secondary); }
+
+    footer { max-width: 1280px; margin: 0 auto; padding: 2.5rem 3.5rem 3.5rem; border-top: 0.5px solid var(--color-border); }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; padding-bottom: 2rem; border-bottom: 0.5px solid var(--color-border); }
+    .footer-brand { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 16px; letter-spacing: 0.06em; color: var(--color-text-tertiary); }
+    .footer-meta { font-size: 11px; letter-spacing: 0.08em; color: var(--color-text-tertiary); }
+    .footer-links { display: flex; gap: 1.75rem; margin: 2rem 0 1.75rem; flex-wrap: wrap; }
+    .footer-links a { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-tertiary); text-decoration: none; }
+    .footer-links a:hover { color: var(--color-text-primary); }
+    .disclosure { font-size: 11px; line-height: 1.85; color: var(--color-text-tertiary); max-width: 92ch; }
+    .disclosure p + p { margin-top: 0.85rem; }
+    .disclosure a { color: var(--color-text-secondary); }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+      .menu-toggle { display: flex; }
+      .page-head { padding: 3rem 1.5rem 2.5rem; }
+      h1 { font-size: 38px; }
+      .legal { padding: 2.5rem 1.5rem 3.5rem; }
+      h2 { font-size: 25px; }
+      .contact-block { padding: 1.5rem; }
+      .contact-block dl { grid-template-columns: 1fr; gap: 0.3rem; }
+      .contact-block dd { margin-bottom: 0.9rem; }
+      footer { padding: 1.5rem 1.5rem 2.5rem; }
+      .footer-top { flex-direction: column; gap: 0.75rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">Vizex <span>Capital</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="entertainment.html">Entertainment &amp; Sport</a></li>
+      <li><a href="index.html#approach">Approach</a></li>
+      <li><a href="transactions.html">Transactions</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html#services">Services</a>
+    <a href="entertainment.html">Entertainment &amp; Sport</a>
+    <a href="index.html#approach">Approach</a>
+    <a href="transactions.html">Transactions</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+
+  <header class="page-head">
+    <div class="eyebrow">Legal</div>
+    <h1>Complaint handling <em>policy</em></h1>
+    <div class="page-meta">Last updated 3 August 2026</div>
+  </header>
+
+  <main class="legal">
+    <div class="legal-inner">
+      <section class="clause">
+        <div class="clause-num">01</div>
+        <h2>Purpose</h2>
+        <p>Vizex Capital is a trading style of Vizex LTD, registered at 71 Hallington Court, 6 Brannigan Way, Edgware, England, HA8 8GE. Company Register number is 16580856. ICO registration ZB953461, which you can check via <a href="https://www.ico.org.uk" rel="noopener">www.ico.org.uk</a>.</p>
+        <p>Vizex LTD is not authorised by the Financial Conduct Authority and can only complete non-regulated introductions. We work with a Panel of Lenders whose particulars will be supplied upon request to find a potentially suitable arrangement for your consideration.</p>
+        <p>Vizex Capital is committed to delivering a high standard of service to all clients. We recognise that, on occasion, issues may arise. This policy sets out how we handle complaints promptly, fairly, and transparently.</p>
+      </section>
+
+      <section class="clause">
+        <div class="clause-num">02</div>
+        <h2>Definition of a complaint</h2>
+        <p>A complaint is any expression of dissatisfaction, whether made orally or in writing, about the services we have provided, which requires a response.</p>
+      </section>
+
+      <section class="clause">
+        <div class="clause-num">03</div>
+        <h2>How to make a complaint</h2>
+        <p>You can submit a complaint by any of the following routes.</p>
+        <div class="contact-block">
+          <dl>
+            <dt>Email</dt>
+            <dd><a href="mailto:complaints@vizex.agency">complaints@vizex.agency</a></dd>
+            <dt>Telephone</dt>
+            <dd><a href="tel:+447423645724">07423 645724</a></dd>
+            <dt>Post</dt>
+            <dd>Vizex LTD, 71 Hallington Court, 6 Brannigan Way, Edgware, England, HA8 8GE</dd>
+          </dl>
+        </div>
+      </section>
+
+      <section class="clause">
+        <div class="clause-num">04</div>
+        <h2>How we handle it</h2>
+        <ol>
+          <li><strong>Acknowledgement.</strong> We will contact you within three business days of receiving your complaint to confirm we are considering it and to clarify any points where necessary. If we are able to resolve the matter within those three business days, we will send you a Summary Resolution Communication: written confirmation that you made a complaint and that we now consider it resolved.</li>
+          <li><strong>Investigation.</strong> The complaint will be investigated by the Managing Director, or by another senior person where appropriate. This will involve reviewing all relevant documentation and communications.</li>
+          <li><strong>Response.</strong> We aim to issue a written response within eight weeks. If we cannot meet that timescale, we will explain why and provide an estimated resolution date.</li>
+          <li><strong>Outcome.</strong> Our final written response will set out our findings, any corrective actions taken, and any resolution we propose.</li>
+        </ol>
+      </section>
+
+      <section class="clause">
+        <div class="clause-num">05</div>
+        <h2>Record keeping</h2>
+        <p>We maintain a Complaints Register recording:</p>
+        <ul>
+          <li>Date received</li>
+          <li>Complainant's details</li>
+          <li>Summary of the complaint</li>
+          <li>Action taken and outcome</li>
+          <li>Date closed</li>
+        </ul>
+        <p>Records are retained for at least six years.</p>
+      </section>
+
+      <section class="clause">
+        <div class="clause-num">06</div>
+        <h2>Escalation</h2>
+        <p>If you remain dissatisfied after our final response, you may seek independent legal advice or use an appropriate trade or mediation body to pursue the matter further.</p>
+      </section>
+
+      <section class="clause">
+        <div class="clause-num">07</div>
+        <h2>Continuous improvement</h2>
+        <p>We review complaint trends periodically to identify root causes and implement improvements to our services, processes, and communication.</p>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">Vizex Capital &middot; London</div>
+      <div class="footer-meta">&copy; 2026 Vizex Ltd &mdash; All rights reserved</div>
+    </div>
+
+    <div class="footer-links">
+      <a href="entertainment.html">Entertainment &amp; Sport</a>
+      <a href="transactions.html">Transactions</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="complaints-policy.html">Complaints Policy</a>
+    </div>
+
+    <div class="disclosure">
+      <p>Vizex Capital is a trading style of Vizex LTD, registered at 71 Hallington Court, 6 Brannigan Way, Edgware, England, HA8 8GE. Company Register number is 16580856. ICO registration ZB953461 and you can check via <a href="https://www.ico.org.uk" rel="noopener">www.ico.org.uk</a>.</p>
+      <p>Vizex LTD is not authorised by the Financial Conduct Authority and can only complete non-regulated introductions. We work with a Panel of Lenders whose particulars will be supplied upon request to find a potentially suitable arrangement for your consideration.</p>
+      <p>We will receive commission from lenders. Different lenders pay different amounts depending on different commission models. For transparency we work with the following commission models: fixed fee, fixed rate of commission and percentage of the amount you borrow. Further details of the commission model, calculation and amount will be disclosed to you throughout your customer journey.</p>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    toggle.addEventListener('click', () => {
+      const open = toggle.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+
+</body>
+</html>
